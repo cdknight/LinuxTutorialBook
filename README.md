@@ -24,11 +24,13 @@ sudo dnf -y install texlive texlive-latex texlive-xetex texlive-collection-latex
 sudo npm install mdpdf -g
 ```
 
-Solus:
+Solus (untested):
 ```bash
 sudo eopkg it texlive nodejs
 sudo npm install mdpdf -g
 ```
+
+Search the programs with a search engine if I haven't listed your distro yet.
 
 ## Extending
 

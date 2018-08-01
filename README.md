@@ -56,9 +56,7 @@ xdg-open output.pdf
 ```
 
 **Note: Do not run this python script if you are not inside the scripts directory. It will not work.**
-This problem can be fixed by using absolute paths of the relative paths with ```
-os.path.abspath(varname)
-```, but the generation script is still a WIP.
+This problem can be fixed by using absolute paths of the relative paths by using ```os.path.abspath(varname)```, but the generation script is still a WIP.
 
 ## Hacking the Generation Script
 The generation script is very simple. 

@@ -1,0 +1,6 @@
+\contentsline {section}{Forewords}{1}
+\contentsline {subsection}{Why Use Linux Mint?}{1}
+\contentsline {section}{Chapter 1: How Your Computer Works}{1}
+\contentsline {subsection}{1.1 How Your Computer Boots Up}{1}
+\contentsline {subsection}{1.2 How Your Computer Manages Software}{1}
+\contentsline {subsection}{1.3 How Your Computer Handles Crashes}{1}

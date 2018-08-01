@@ -1,0 +1,24 @@
+\documentclass[a4paper, oneside]{article}
+\usepackage{sectsty}
+\usepackage[sfdefault]{FiraSans}
+\renewcommand{\contentsname}{\Huge Table of Contents}
+
+\begin{document}
+	\tableofcontents
+%	\setcounter{secnumdepth}{0} % sections are level 1
+%	\setcounter{secnumdepth}{1}
+	
+	\addcontentsline{toc}{section}{Forewords}
+		\addcontentsline{toc}{subsection}{Why Use Linux Mint?}
+	
+	% Add un-numbered sections.
+		
+	\addcontentsline{toc}{section}{Chapter 1: How Your Computer Works}
+		\addcontentsline{toc}{subsection}{1.1 How Your Computer Boots Up}
+%		\subsection{}
+		\addcontentsline{toc}{subsection}{1.2 How Your Computer Manages Software}
+		\addcontentsline{toc}{subsection}{1.3 How Your Computer Handles Crashes}
+		
+	
+	
+\end{document}

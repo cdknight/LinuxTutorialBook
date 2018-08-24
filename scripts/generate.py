@@ -15,7 +15,7 @@ CHAPTER_FILES_DIR="../chapters"
 XELATEX_PATH="/usr/bin/xelatex"
 
 #markdown, htmldoc vars
-MPDF_PATH="/usr/local/bin/mdpdf"
+MDPDF_PATH="/usr/local/bin/mdpdf"
 
 #pdfjam vars
 PDFJAM_PATH="/usr/bin/pdfjam"
@@ -41,10 +41,21 @@ def genBookPDF():
 	xelatexToPDF("../toc.tex", TMP_OUTPUT_DIR + "/toc.pdf")
 	
 	#gen chapter md, then conv to pdf
-	for chapter in glob.glob(CHAPTER_FILES_DIR + "/Ch*"):
+	chapter_list = []
+	chapter_on = 1
+	is_chapter_counting = True
+	while is_chapter_counting:
+		current_chapter = CHAPTER_FILES_DIR + "/Ch" + str(chapter_on)
+		if os.path.exists(current_chapter):
+			chapter_list.append(current_chapter)
+			chapter_on += 1 
+		else:
+			is_chapter_counting = False
+	
+	for chapter in chapter_list:
 		chapter_name = chapter[-1]
 		outputfilename = writeFullChapterMarkdown(chapter_name)
-		markdownToPDF(outputfilename, TMP_OUTPUT_DIR + "/" + chapter_name + ".pdf", True)
+		markdownToPDF(outputfilename, TMP_OUTPUT_DIR + "/" + chapter_name + ".pdf", False)
 		pdflist.append(TMP_OUTPUT_DIR + "/" + chapter_name + ".pdf")
 	
 	#ending things, glossary, bib
@@ -96,8 +107,20 @@ def writeFullChapterMarkdown(chname):
 	chname = str(chname)
 	
 	full_md_str = str()
+	md_files_list = []
 	
-	md_files_list = glob.glob(CHAPTER_FILES_DIR + "/Ch" + chname + "/" + chname + "_*.md")
+	is_more_subfiles = True
+	current_subfile = 1
+	while is_more_subfiles:
+		current_subfile_path = CHAPTER_FILES_DIR + "/Ch" + chname + "/" + str(current_subfile) + ".md";
+		if os.path.exists(current_subfile_path):
+			md_files_list.append(current_subfile_path)
+			current_subfile += 1
+		else:
+			is_more_subfiles = False
+			
+	print(md_files_list)
+		
 	
 	#read preface to full_md_str
 	with open(CHAPTER_FILES_DIR + "/Ch" + chname + "/preface.md") as preface_obj:
@@ -124,10 +147,11 @@ def markdownToPDF(inputfile, outputfile, styles):
 	"""Convert markdown file inputfile to pdf file outputfile on portrait A4 paper. Requires markdown-pdf"""
 	print("converting " + inputfile + " to pdf at " + outputfile)
 	if not styles:
-		command = MPDF_PATH + " --orientation=portrait --format=A4 " + inputfile + " " + outputfile
+		command = MDPDF_PATH + " " + inputfile + " " + outputfile
 	else: 
-		command = MPDF_PATH + " --styles=" + STYLESHEET_PATH + " --orientation=portrait --format=A4 " + inputfile + " " + outputfile
-	#print(command)
+		#command = MDPDF_PATH + " -s " + STYLESHEET_PATH + " -r portrait -f A4 -m \"{\\\"html\": true}\" -o " + outputfile + " " + inputfile
+		command = MDPDF_PATH + " --style=" + STYLESHEET_PATH + " " + inputfile + " " + outputfile
+	print(command)
 	os.system(command + DO_NOT_SHOW_OUTPUT)
 	
 	

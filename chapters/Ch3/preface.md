@@ -1,0 +1,2 @@
+### Chapter 2: Basic Tasks with Linux Mint
+In this chapter, we go over some of the basic tasks in Linux Mint, like checking e-mail, browsing the web, and managing software. Chapter 3 includes step-by-step instructions with pictures to help you follow along.

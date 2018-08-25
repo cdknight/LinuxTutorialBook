@@ -119,7 +119,7 @@ def writeFullChapterMarkdown(chname):
 		else:
 			is_more_subfiles = False
 			
-	print(md_files_list)
+	#print(md_files_list)
 		
 	
 	#read preface to full_md_str
@@ -151,7 +151,7 @@ def markdownToPDF(inputfile, outputfile, styles):
 	else: 
 		#command = MDPDF_PATH + " -s " + STYLESHEET_PATH + " -r portrait -f A4 -m \"{\\\"html\": true}\" -o " + outputfile + " " + inputfile
 		command = MDPDF_PATH + " --style=" + STYLESHEET_PATH + " " + inputfile + " " + outputfile
-	print(command)
+	#print(command)
 	os.system(command + DO_NOT_SHOW_OUTPUT)
 	
 	
